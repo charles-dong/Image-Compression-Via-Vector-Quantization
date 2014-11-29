@@ -1,0 +1,41 @@
+## SUMMARY
+
+Image Compression via vector quantization using K-means.
+
+We implement a simple image compression algorithm using four operations:
+
+1) splitting the image into small non-overlapping tiles of size, say, 8 by 8 pixels
+2) interpreting this set of tiles as a training set of 64-dimensional input examples (each vector component being a pixel)
+3) running a clustering algorithm (e.g., K-means) on this training set
+4) coding each tile by a code that represents the nearest cluster centroid to the tile.
+
+We perform vector quantization by replacing each tile with the mean of the Gaussian that yields the highest posterior probability for that example.
+
+## SOURCE CODE DETAILS
+
+q5_splitimgintiles.m splits the image in tiles of size 8 by 8.
+
+q5_dist2.m calculates the squared Euclidean distance between two sets of points. 
+
+q5_kmeans_select_seeds.m selects K examples that will be used as initial centroids for the K-means algorithm. Initial centroids are chosen such that the i-th cenroid is the example furthest away from the already selected i-1 centroids. 
+
+q5_kmeans.m performs K-means clustering on an input set of examples (in this case, image tiles) given a set of K initial centroids. K-means stops when the difference in distortions between two consecutive iterations is less than 10^-6.
+
+q5_reconstructimgfromVQ.m reconstructs the “compressed” image. Given the centroids and the cluster labels computed from K-means, it synthesizes an image by setting each tile to its closest centroid.
+
+Script q5a.m performs vector quantization using K ∈ {2, 4, 8} clusters and show the results of the image compression and decompression.
+
+q5_gmminit.m initializes the GMM model given a hard assignment of the input examples to K clusters (computed via K-means). Implements a single M-step using the hard associations to centroids in lieu of the component posterior probabilities.
+
+q5_logprobgauss.m calculates the log probability for an input example under a multivariate Gaussian model. 
+
+q5_GM_Expectation.m executes the Expectation-step for the learning of a GMM.
+
+q5_GM_Maximization.m executes the Maximization-step for the learning of a GMM.
+
+q5_GaussianMixture.m learns the GMM by using the Expectation Maximization (EM) algorithm.
+
+Script q5b.m initializes the clustering assignments using K-means, then it trains the GMM using this initialization. It performs vector quantization by replacing each tile with the mean of the Gaussian that yields the highest posterior probability for that example.
+
+
+
