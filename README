@@ -2,14 +2,14 @@
 
 Image Compression via vector quantization using K-means.
 
-We implement a simple image compression algorithm using four operations:
+This project implements a simple image compression algorithm using four operations:
 
 1) splitting the image into small non-overlapping tiles of size, say, 8 by 8 pixels
 2) interpreting this set of tiles as a training set of 64-dimensional input examples (each vector component being a pixel)
 3) running a clustering algorithm (e.g., K-means) on this training set
 4) coding each tile by a code that represents the nearest cluster centroid to the tile.
 
-We perform vector quantization by replacing each tile with the mean of the Gaussian that yields the highest posterior probability for that example.
+This project performs vector quantization by replacing each tile with the mean of the Gaussian that yields the highest posterior probability for that example.
 
 ## SOURCE CODE DETAILS
 
